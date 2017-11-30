@@ -19,7 +19,7 @@
 # Excuse the ugly code.  I threw this together as quickly as possible and I
 # don't normally code in Python.
 #
-import csv, getpass, json, os, time, urllib
+import csv, getpass, json, os, time, urllib, sys
 from tweepy import Cursor
 #from twitter_client import get_twitter_client
 from tweepy import API
@@ -129,18 +129,21 @@ def download_tweets( fetch_list, raw_dir ):
         # pull data
         fname = "{}.json".format(item[2])
         #api = tweepy.API(auth)
-        status = client.get_status(item[2])
-        with open(fname, 'w') as f:
-            f.write(json.dumps(status._json))
+        try:
+            status = client.get_status(item[2])
+        
+            with open(raw_dir+"/"+fname, 'w') as f:
+                f.write(json.dumps(status._json))
             
         #url = 'http://api.twitter.com/1/statuses/show.json?id=' + item[2]
         #urllib.urlretrieve( url, raw_dir + item[2] + '.json' )
 
         # stay in Twitter API rate limits 
-        print '    pausing %d sec to obey Twitter API rate limits' % \
-              (download_pause_sec)
-        time.sleep( download_pause_sec)
-
+            print '    pausing %d sec to obey Twitter API rate limits' % \
+                  (download_pause_sec)
+            time.sleep( download_pause_sec)
+        except:
+            print "Error",sys.exc_info()[0]
     return
 
 
@@ -213,11 +216,19 @@ def build_output_corpus( out_filename, raw_dir, total_list ):
 
 def get_twitter_auth():
 
-# IMPORTANT NOTE: Make sure to use your own Twitter App Credentials
-    consumer_key = '7RVcavx0VJkB5gIknVQgU8dp2' #os.environ["TWITTER_CONSUMER_KEY"]
-    consumer_secret = 'DNBIPPz8eOuFfmhIw99tNbWjQScuJIVwZQoh1CzhozwexdaoWW' # os.environ['TWITTER_CONSUMER_SECRET']
-    access_token = '922919621493174273-syUxRdt1Y19qr9w0DOBuU3f5yyJIJrV' # os.environ['TWITTER_ACCESS_TOKEN']
-    access_secret = 'fLhehwLyKZr86YE5gxQBQbCCca9AEqXjjkeSGZvtJU0op' # os.environ['TWITTER_ACCESS_SECRET']
+    try:
+        consumer_key = os.environ["TWITTER_CONSUMER_KEY"]
+        consumer_secret = os.environ['TWITTER_CONSUMER_SECRET']
+        access_token = os.environ['TWITTER_ACCESS_TOKEN']
+        access_secret = os.environ['TWITTER_ACCESS_SECRET']
+        print "used env vars:",consumer_key
+    except KeyError:
+        sys.stderr.write("TWITTER_* environment variables not set\n")
+
+        consumer_key = '7RVcavx0VJkB5gIknVQgU8dp2'
+        consumer_secret = 'DNBIPPz8eOuFfmhIw99tNbWjQScuJIVwZQoh1CzhozwexdaoWW'
+        access_token = '922919621493174273-syUxRdt1Y19qr9w0DOBuU3f5yyJIJrV'
+        access_secret = 'fLhehwLyKZr86YE5gxQBQbCCca9AEqXjjkeSGZvtJU0op'
 
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_secret)
