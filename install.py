@@ -150,7 +150,6 @@ def download_tweets( fetch_list, raw_dir ):
 def parse_tweet_json( filename ):
     
     # read tweet
-    print 'opening: ' + filename
     fp = open( filename, 'rb' )
 
     # parse json
@@ -200,6 +199,8 @@ def build_output_corpus( out_filename, raw_dir, total_list ):
                 print '--> bad data in tweet #' + item[2]
                 missing_count += 1
 
+            except:
+                print "Some error about ",sys.exc_info()[0]
         else:
             print '--> missing tweet #' + item[2]
             missing_count += 1
