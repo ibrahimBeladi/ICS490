@@ -2,6 +2,7 @@ import json;
 import sys;
 import csv;
 import pandas;
+import string;
 from pprint import pprint
 
 def count_rev(products):
@@ -13,6 +14,19 @@ def count_rev(products):
         else:
             countN += 1
     print '\nPositive Reviews Count: {}\nNegative Reviews Count: {}'.format(countP,countN)
+
+def remove_punctuation(text):
+    return text.translate(None, string.punctuation)
+
+def apply_transformations(products):
+    #transformation #1. remove n/a's
+    print 'Applying Data Transformations...'
+    products = products.fillna({'review':''})
+    review_clean = []
+    for (index,row) in products.iterrows():
+        review_clean.append(remove_punctuation(row.loc['review']))
+    products['review_clean'] = review_clean
+    return products
 
 def print_first_10(products):
     print '\nFirst 10 Products:'
@@ -32,20 +46,28 @@ def print_first_unique_10(products):
 
     for index in range(10):
         print 'Product #{}: {}'.format((index + 1),first_10[index])
-    
-def clean_data(data_frame):
-    ### forward the value of the previous record
-    cleaned_data_frame = data_frame.fillna(method='ffill')
-    return cleaned_data_frame
+
+def count_important_words(imp_words,products):
+    print 'Counting important words...'
+    for word in imp_words:
+        for (index,row) in products.iterrows():
+            row.loc[word] = row['review_clean'].split().count(word)
+    return products
 
 if __name__ == '__main__':
     dataset_file = 'amazon_baby_subset.csv'
+    
+    #read dataset
     data_frame = pandas.read_csv(dataset_file)
-    data_frame.get
-    #print_first_10(data_frame)
+    
     print_first_unique_10(data_frame)
     count_rev(data_frame)
+    
+    data_frame = apply_transformations(data_frame)
+    
+    #load important words
     important_words_json = 'important_words.json'
     important_words = json.load(open(important_words_json))
-    data_frame = clean_data(data_frame)
+    
+    data_frame = count_important_words(important_words,data_frame)
 
