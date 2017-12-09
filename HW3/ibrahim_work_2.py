@@ -33,6 +33,11 @@ def print_first_unique_10(products):
     for index in range(10):
         print 'Product #{}: {}'.format((index + 1),first_10[index])
     
+def clean_data(data_frame):
+    ### forward the value of the previous record
+    cleaned_data_frame = data_frame.fillna(method='ffill')
+    return cleaned_data_frame
+
 if __name__ == '__main__':
     dataset_file = 'amazon_baby_subset.csv'
     data_frame = pandas.read_csv(dataset_file)
@@ -42,4 +47,5 @@ if __name__ == '__main__':
     count_rev(data_frame)
     important_words_json = 'important_words.json'
     important_words = json.load(open(important_words_json))
+    data_frame = clean_data(data_frame)
 
