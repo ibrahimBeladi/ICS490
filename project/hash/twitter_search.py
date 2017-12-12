@@ -25,7 +25,7 @@ oauth = OAuth(ACCESS_TOKEN, ACCESS_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
 twitter = Twitter(auth=oauth) 
 
 hash = u"#السينما_في_السعودية"
-numOfTweets = 35000 # 25000 is ok, 50000 overflows
+numOfTweets = 50000
 mkdir_p(hash)
 
 while True:
