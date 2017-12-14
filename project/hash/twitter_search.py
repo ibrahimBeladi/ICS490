@@ -25,11 +25,11 @@ oauth = OAuth(ACCESS_TOKEN, ACCESS_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
 twitter = Twitter(auth=oauth) 
 
 hash = u"#السينما_في_السعودية"
-numOfTweets = 50000
+numOfTweets = 5000
 mkdir_p(hash)
 
 while True:
-	iterator = twitter.search.tweets(q=hash, result_type='mixed', lang='ar', count=numOfTweets)
+	iterator = twitter.search.tweets(q=hash, result_type='mixed', lang='ar', count=numOfTweets, tweet_mode='extended')
 
 	for tweet in iterator['statuses']:
-		write(hash+"/"+tweet['id_str'],tweet['text'])
+		write(hash+"/"+tweet['id_str'],tweet['full_text'])
