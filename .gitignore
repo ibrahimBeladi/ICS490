@@ -14,3 +14,4 @@ HW3/word-count/
 project/hash/#*/
 
 project/hash/ids/
+*.pyc

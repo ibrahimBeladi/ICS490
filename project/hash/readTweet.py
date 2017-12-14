@@ -15,13 +15,16 @@ def mkdir_p(path):
 if __name__ == '__main__':
 
     mkdir_p("rawdata")
-    fname = "ids.jsonl"
+    fname = "not_exported"
     client = get_twitter_client()
     with open(fname, 'r') as f:
         for line in f:
             id_1 = json.loads(line)
             outName = "{}".format(id_1)
-            status = client.get_status(id_1,tweet_mode='extended')
-            with open("rawdata"+"/"+outName, 'w') as f:
-                f.write(status.full_text.encode('utf-8'))
+            try:
+                status = client.get_status(id_1,tweet_mode='extended')
+                with open("rawdata"+"/"+outName, 'w') as f:
+                    f.write(status.full_text.encode('utf-8'))
+            except:
+                print "Error at "+line
 
