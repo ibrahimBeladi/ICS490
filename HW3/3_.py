@@ -1,6 +1,9 @@
 import pandas;
 import json;
 import pprint;
+from sklearn.model_selection import KFold;
+from sklearn.model_selection import cross_val_score;
+from sklearn.linear_model import LogisticRegression;
 
 def to_multidim_array(dataframe,features,label):
     print 'Inserting column of one\'s to dataframe...'
@@ -9,7 +12,6 @@ def to_multidim_array(dataframe,features,label):
     features.insert(0,'constant')
     featurse_matrix = extract_featurs_matrix(features, dataframe)
     label_matrix = extract_label_matrix(label,dataframe)
-    
     return (featurse_matrix, label_matrix)
 
 def extract_label_matrix(label,dataframe):
@@ -42,6 +44,17 @@ def get_important_words(file_name='important_words.json'):
         print 'Unable Read "{}". Check that it is exist and well formatted.'.format(file_name)
     return imp_w
 
+def apply_logistic_reg(features,word_count):
+    print 'Applaying Logistic Reg...'
+    X = features[:, 0:word_count] # Features
+    Y = features[:, word_count] # Binary output (Positive and negative classes)
+    kfold = KFold(n_splits = 10, random_state = 7)
+    model = LogisticRegression()
+    results = cross_val_score(model, X, Y, cv = kfold)
+    print('Est. Mean: {}'.format(results.mean()))
+
+    
+
 if __name__ == '__main__':
     data_file = 'word-count/all-words-no-review.csv'
     print 'Reding Data form "{}"...'.format(data_file)
@@ -56,4 +69,5 @@ if __name__ == '__main__':
     features = get_important_words()
     ret_val = to_multidim_array(df,features,label)
     print 'Number of features in the feature_matrix: {}'.format(len(ret_val[0]))
-        
+#193 = count of important words
+    apply_logistic_reg(ret_val[0],193)
