@@ -1,6 +1,6 @@
 #encoding: utf-8
 from twitter import Twitter, OAuth, TwitterHTTPError, TwitterStream 
-import json, sys, os, errno, codecs
+import json, sys, os, errno, codecs, time
 ###########################################################################################
 def mkdir_p(path):
     try:
@@ -25,11 +25,15 @@ oauth = OAuth(ACCESS_TOKEN, ACCESS_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
 twitter = Twitter(auth=oauth) 
 
 hash = u"#السينما_في_السعودية"
-numOfTweets = 5000
-mkdir_p(hash)
+numOfTweets = 100
 
 while True:
-	iterator = twitter.search.tweets(q=hash, result_type='mixed', lang='ar', count=numOfTweets, tweet_mode='extended')
-
-	for tweet in iterator['statuses']:
-		write(hash+"/"+tweet['id_str'],tweet['full_text'])
+    try:
+        print "getting tweets!"
+        iterator = twitter.search.tweets(q=hash, result_type='mixed', lang='ar', count=numOfTweets)
+        for tweet in iterator['statuses']:
+            write("ids"+"/"+tweet['id_str'],"")
+    except Exception as e:
+        print e
+        print "sleeping for 25 seconds!"
+        time.sleep(25)
