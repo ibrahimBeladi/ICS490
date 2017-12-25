@@ -1,0 +1,35 @@
+
+        (scores, x_values) = ensemble_forward_pass(clfs, X, y, n_clfs=n_clfs)
+        plt.plot(x_values, scores, label="heterogenuous ensemble")
+
+    else:
+        print "%s does not exist..." % method
+        raise
+
+#### ENSEMBLE FORWARD PASS
+def ensemble_forward_pass(clfs, X, y, n_clfs=None):
+    if n_clfs == None:
+        n_clfs= len(clfs)
+
+    clf_list = ut.ensemble_clfs(clfs)
+    auc_scores = np.zeros(n_clfs)
+
+    for i in range(n_clfs):
+        skf = model_selection.StratifiedKFold(n_splits=4)
+
+        # CROSS VALIDATE
+        scores = []
+        for train_index, test_index in skf.split(X, y):
+            X_train, X_test = X[train_index], X[test_index]
+            y_train, y_test = y[train_index], y[test_index]
+
+            clf_list.fit(X_train, y_train, i)
+            y_pred = clf_list.predict(X_test)
+
+            scores += [metrics.roc_auc_score(y_test, y_pred)]
+
+        auc_scores[i] = np.mean(scores)
+        print "Score: %.3f, n_clfs: %d" % (auc_scores[i], i+1)
+
+    return auc_scores, np.arange(n_clfs) + 1
+
