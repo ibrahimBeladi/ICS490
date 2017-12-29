@@ -15,3 +15,5 @@ project/hash/#*/
 
 project/hash/ids/
 *.pyc
+
+jupyter/\.ipynb_checkpoints/
