@@ -51,7 +51,10 @@ if __name__ == '__main__':
                         print outName + " that page does not exist."
                         write(destination+"/"+outName, "")
                     elif e[0][0]['code'] == 88:
-                        sys.exit("Rate limit exceeded, before reaching: " + outName)
+                        print("Rate limit exceeded")
+                        print("Sleeping...")
+                        time.sleep(30)
+                        #sys.exit("Rate limit exceeded, before reaching: " + outName)
                     else:
                         print e
                         print "for " + outName

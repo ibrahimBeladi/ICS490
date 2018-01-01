@@ -19,6 +19,7 @@ def write(path, msg):
 if __name__ == '__main__':
 
     destination = "rawdata"
+    # ls ids | sed 's|[^0-9]||g' > list ; cat list | wc -l
     fname = "list"
 
     mkdir_p(destination)
