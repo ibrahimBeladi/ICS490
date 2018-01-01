@@ -17,3 +17,5 @@ project/hash/ids/
 *.pyc
 
 jupyter/\.ipynb_checkpoints/
+
+project/hash/geo/
