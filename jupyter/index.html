@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>L_PREFER_CANVAS = false; L_NO_TOUCH = false; L_DISABLE_3D = false;</script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+    <link rel="stylesheet" href="https://rawgit.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css" />
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <style> #map_81bbcaf735e74c31b2b00515677ee1c5 {
+                position : relative;
+                width : 100.0%;
+                height: 100.0%;
+                left: 0.0%;
+                top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_81bbcaf735e74c31b2b00515677ee1c5" ></div>
+        
+</body>
+<script>    
+    
+
+            
+                var bounds = null;
+            
+
+            var map_81bbcaf735e74c31b2b00515677ee1c5 = L.map(
+                                  'map_81bbcaf735e74c31b2b00515677ee1c5',
+                                  {center: [26.31,50.1435],
+                                  zoom: 15.5,
+                                  maxBounds: bounds,
+                                  layers: [],
+                                  worldCopyJump: false,
+                                  crs: L.CRS.EPSG3857
+                                 });
+            
+        
+    
+            var tile_layer_8134570846854ff8a43a745ad0541c8c = L.tileLayer(
+                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                {
+  "attribution": null, 
+  "detectRetina": false, 
+  "maxZoom": 18, 
+  "minZoom": 1, 
+  "noWrap": false, 
+  "subdomains": "abc"
+}
+                ).addTo(map_81bbcaf735e74c31b2b00515677ee1c5);
+        
+    
+
+            var marker_bca374107cb44cfea6f839888d85e164 = L.marker(
+                [26.312612,50.1443],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_81bbcaf735e74c31b2b00515677ee1c5);
+            
+    
+
+                var icon_fdeab53e53e749d48a8e639846f585cb = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'red',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_bca374107cb44cfea6f839888d85e164.setIcon(icon_fdeab53e53e749d48a8e639846f585cb);
+            
+    
+            var popup_90579dfa30bf48b1a443abd8483ee4c0 = L.popup({maxWidth: '300'});
+
+            
+                var html_67b66c4348244504b009ea7100a51886 = $('<div id="html_67b66c4348244504b009ea7100a51886" style="width: 100.0%; height: 100.0%;"><b>Ibrahim Beladi</b></div>')[0];
+                popup_90579dfa30bf48b1a443abd8483ee4c0.setContent(html_67b66c4348244504b009ea7100a51886);
+            
+
+            marker_bca374107cb44cfea6f839888d85e164.bindPopup(popup_90579dfa30bf48b1a443abd8483ee4c0);
+
+            
+        
+    
+
+            var marker_841c176a1b084d80b93aba080c4caa87 = L.marker(
+                [26.31316,50.146532],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_81bbcaf735e74c31b2b00515677ee1c5);
+            
+    
+
+                var icon_39becc1fc1dd4ac88e118f5632afc9b7 = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'green',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_841c176a1b084d80b93aba080c4caa87.setIcon(icon_39becc1fc1dd4ac88e118f5632afc9b7);
+            
+    
+            var popup_9bc4814b059944d98fe339b86736ed11 = L.popup({maxWidth: '300'});
+
+            
+                var html_540c55c94f224f898cce7beeaf9683c5 = $('<div id="html_540c55c94f224f898cce7beeaf9683c5" style="width: 100.0%; height: 100.0%;"><b>Ibrahim BinAlshikh</b></div>')[0];
+                popup_9bc4814b059944d98fe339b86736ed11.setContent(html_540c55c94f224f898cce7beeaf9683c5);
+            
+
+            marker_841c176a1b084d80b93aba080c4caa87.bindPopup(popup_9bc4814b059944d98fe339b86736ed11);
+
+            
+        
+    
+
+            var marker_9daba5ed7ab54f61a424908ccb12f163 = L.marker(
+                [26.313698,50.146831],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_81bbcaf735e74c31b2b00515677ee1c5);
+            
+    
+
+                var icon_0aeccd01077541f8bc465cbf62db257a = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'orange',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_9daba5ed7ab54f61a424908ccb12f163.setIcon(icon_0aeccd01077541f8bc465cbf62db257a);
+            
+    
+            var popup_bb2621b1f87845428964982ad29989ef = L.popup({maxWidth: '300'});
+
+            
+                var html_698fbb5bc38e44e5983f9c02a647c281 = $('<div id="html_698fbb5bc38e44e5983f9c02a647c281" style="width: 100.0%; height: 100.0%;"><b>Mohammed Alfarraj</b></div>')[0];
+                popup_bb2621b1f87845428964982ad29989ef.setContent(html_698fbb5bc38e44e5983f9c02a647c281);
+            
+
+            marker_9daba5ed7ab54f61a424908ccb12f163.bindPopup(popup_bb2621b1f87845428964982ad29989ef);
+
+            
+        
+    
+
+            var marker_44fc2ebd5b0e485cbf85b11550a44390 = L.marker(
+                [26.312436,50.142059],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_81bbcaf735e74c31b2b00515677ee1c5);
+            
+    
+
+                var icon_1ae0b42a452943e1be72e0774a43b174 = L.AwesomeMarkers.icon({
+                    icon: 'user',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_44fc2ebd5b0e485cbf85b11550a44390.setIcon(icon_1ae0b42a452943e1be72e0774a43b174);
+            
+    
+            var popup_eb9ea861f6d44646af502fc910c86c92 = L.popup({maxWidth: '300'});
+
+            
+                var html_786e05b1793444358f7184f3d617c2c2 = $('<div id="html_786e05b1793444358f7184f3d617c2c2" style="width: 100.0%; height: 100.0%;"><b>Omar Al-Dakhil</b></div>')[0];
+                popup_eb9ea861f6d44646af502fc910c86c92.setContent(html_786e05b1793444358f7184f3d617c2c2);
+            
+
+            marker_44fc2ebd5b0e485cbf85b11550a44390.bindPopup(popup_eb9ea861f6d44646af502fc910c86c92);
+
+            
+        
+    
+
+            var marker_c56b826e77e44af393cb9e4ab343a6f3 = L.marker(
+                [26.305883,50.146584],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_81bbcaf735e74c31b2b00515677ee1c5);
+            
+    
+
+                var icon_0eb85c8c9f894b3dbb4f8baa9ac28454 = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'purple',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_c56b826e77e44af393cb9e4ab343a6f3.setIcon(icon_0eb85c8c9f894b3dbb4f8baa9ac28454);
+            
+    
+            var popup_9f97d501c1a34d25a504bed37d50490b = L.popup({maxWidth: '300'});
+
+            
+                var html_7cdbdee26e714190a7e1e8a2ff64c40b = $('<div id="html_7cdbdee26e714190a7e1e8a2ff64c40b" style="width: 100.0%; height: 100.0%;"><b>Building 22</b></div>')[0];
+                popup_9f97d501c1a34d25a504bed37d50490b.setContent(html_7cdbdee26e714190a7e1e8a2ff64c40b);
+            
+
+            marker_c56b826e77e44af393cb9e4ab343a6f3.bindPopup(popup_9f97d501c1a34d25a504bed37d50490b);
+
+            
+        
+</script>
