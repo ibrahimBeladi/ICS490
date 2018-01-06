@@ -12,7 +12,7 @@
 #    The final output of running this file is a set of .csv files.   #
 #    Each file will contain 10 words out of the 193 words. Each word #
 #    will have two columns, one column that indecates if the word    #
-#    has appeared in the review (1 or -1) and the second column will #
+#    has appeared in the review (1 or 0) and the second column will  #
 #    contain the number of times word has appeared in the review.    #
 #                                                                    #
 #    After this step, the content of each file should be copyed and  #
@@ -80,7 +80,7 @@ def count_important_words(imp_words,products):
             if count >= 1:
                 countList.append(1)
             else:
-                countList.append(-1)
+                countList.append(0)
         products[word] = col
         products['contains_'+word] = countList
         itr_count = itr_count + 1
@@ -112,13 +112,5 @@ if __name__ == '__main__':
     count_rev(data_frame)
     important_words = get_important_words()
     data_frame = count_important_words(important_words,data_frame)
-    
 
-
-
-
-
-
-
-
-    
+  
